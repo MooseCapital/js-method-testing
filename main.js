@@ -152,6 +152,322 @@ let search = "Red red red RED"
 console.log(search.search("r"));
 
 
+    //slice() will cut out part of a string past an index you specify. start index required, end index optional
+let slicevar = "HELLO it is a nice day";
+console.log(slicevar.slice(7)); // t is a nice day
+
+console.log(slicevar.slice(9 ,-1)) // is a nice da  -1 gives one before last letter,
+console.log(slicevar.slice(0,1)) //first letter: h
+
+
+    //split()  will split a string by what we define, " " space or "" each letter. then separate them into single items in an array.
+
+console.log(slicevar.split(" ")); // [ 'hello', 'it', 'is', 'a', 'nice', 'day' ]
+
+//we can split then tell it the amount of items we want
+console.log(slicevar.split(" ", 2)); // [ 'hello', 'it' ]
+
+//most important thing is to remember, this is for turning a string into an array, so we can do all types of array methods to a string, then turn it back if we want to
+ let arr = slicevar.split(" "); //
+console.log(arr[0]); //hello
+
+
+
+        // startsWith()  is like endsWith but the opposite, returns true if a string starts with our input
+console.log(slicevar.startsWith("hi"));//false
+console.log(slicevar.startsWith("hello"))// true
+
+
+
+        // toLowerCase()  converts a string to lowercase without changing the original string
+
+console.log(slicevar.toLowerCase());// hello it is a nice day
+
+
+        // toString()  not used on strings, but used to make objects and arrays into a string so it is useable
+
+        // toUperCase()  makes a string upercase, does not change the original string
+
+console.log(slicevar.toUpperCase()); // HELLO IT IS A NICE DAY
+
+        // trim() removes white spaces from start and end of a string, not the middle
+let c = "    b   "
+console.log(c.trim())// b
+
+
+
+
+
+
+
+    //  Number Methods
+
+// isInteger()  returns true for WHOLE numbers, decimals and strings return false
+console.log(Number.isInteger(5-2));// true
+console.log(Number.isInteger(5/2)) // false
+
+    // toFixed()  turns a number into a string and rounds it to whole, or however many places we say. then we would turn that string back to a number, or simply use math.Round()
+let numb = 5.324234
+console.log(numb.toFixed());// 5
+console.log(numb.toFixed(3))// 5.324
+
+    //toLocalString()   turns the number into a string and formats it with commas, can also add dollar sign for dollar format
+let num = 1000000;
+console.log(num.toLocaleString());//1,000,000
+let strnum = num.toLocaleString();
+
+//type of  to get type of variable or object
+console.log(typeof strnum) // string
+
+
+
+                       // convert string to a number
+                       //  parseFloat()  or Number(),  parseInt() can NOT convert decimals, so don't use
+let testn = "34.11"
+console.log(     Number(testn))  //34.11
+console.log(       parseFloat(testn))  //34.11
+
+                    // convert  numbers, arrays to a string  with toString()  or string()
+                    // we would split a string with  split(), to an array, then array.toString()  back to string
+
+
+
+                            // Math Methods
+let roundme = 10.6;
+console.log(     Math.round(roundme)); // 11    rounds to the nearest
+
+console.log(     Math.floor(roundme))  // 10   round down to the nearest even if its above .5
+
+console.log(    Math.min(5, 10)) // 5   gives min value of 2 numbers
+
+console.log( Math.max(1, 99)) // 99 gives max value of 2 numbers
+
+console.log(  Math.random() ) // 0.4245354980448932    gives random numbers between 0-1   which we should round and can multiply by 100 if we want random whole numbers
+
+
+
+
+
+
+
+                         // Array methods
+
+// spread operator can replace some methods for arrays and makes it easy to copy things    -   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax   -  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+let parts = ['shoulders', 'knees'];
+let lyrics = ['head', ...parts, 'and', 'toes'];
+console.log(lyrics)//  ["head", "shoulders", "knees", "and", "toes"]
+
+arr1 = [1, 2 ,3];
+arr2 = [4, 5, 6];
+arr1 = [...arr2, ...arr1] //   [ 4, 5, 6, 1, 2, 3 ]  -         easily turn arrays around, where we would have to use methods to accompish this.
+console.log(arr1)
+
+arr1 = [arr1, arr2]; // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]   gives an array of 2 arrays, not one array with all the items like above,
+
+console.log(arr1)
+
+
+                  //rest param - allows a function to take in unlimited arguments when called that we may not know, then puts then into an array. a real array, so methods can be called on them
+function myFun(a,  b, ...manyMoreArgs) {
+ console.log("a", a)// a, one
+ console.log("b", b) // b, two
+ console.log("manyMoreArgs", manyMoreArgs)   // manyMoreArgs, ["three", "four", "five", "six"]
+}
+myFun("one", "two", "three", "four", "five", "six")
+
+
+
+                                                               //https://www.w3schools.com/jsref/jsref_obj_array.asp
+                   // concat()   add arrays to the end of an array, this is an alternative to the above spread operator.  [...arr1, ...arr2]
+let arr3 = ["a", "b" ,"c"];
+let arr4 = ["d", "e" ,"f", "g", "h"];
+
+console.log(arr3.concat(arr4)); // [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' ]
+console.log(arr3.concat(arr4, arr2)); // [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 4, 5, 6 ]     can add 2 or more arrays also.
+
+
+
+                     // every(CurrentValue)   runs a function for every item in the array, the function must have a condiiton that returns true or false.
+                     // then if every item in the array returns true, it will return true, and the same for false
+let arr5 = [1, 2, 3, 4, 5 ,6 ,7 ,8 ,9 ,10];
+function testevery(num) {
+
+return 5 < num
+}
+
+console.log(arr5.every(testevery)); //false
+
+
+
+                      // fill("value", startindex, endindex)  fills an array with our item typed in, it will CHANGE the original array, end index defaults to the array length
+console.log(      arr5.fill(1)    ) //[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+let arr6 = [1, 2 ,3, "a", "b", "c"];
+// instead of learning copyWithin() which copies existing items in the array, with fill(), we have to type a value, but by making the array[] value below, we copy an item to the array that we did NOT write in
+console.log(    arr6.fill(arr6[3], 2)  ) //[ 1, 2, 'a', 'a', 'a', 'a' ]
+
+
+
+                  // filter(  function(currentvalue,  index))          filter is like every(), we need a function that will return a conditional true or false, but in this case, we don't just want a boolean
+                  //               we want to keep all the values that return true from our function,   then we make a new function from that value
+
+let arfilter = [1,2,3,4,5,6,7,8,9,10];
+
+let filtered = arfilter.filter( currentnum => currentnum < 5)
+
+console.log(filtered) // [ 1, 2, 3, 4 ]
+
+
+
+
+                 // find(currentvalue, index)  is like filter, we need a function that returns a condition true or false. but we want to find the FIRST item that meets it and we return only that, not every item
+function arFind(current) {
+return current > 4;
+}
+
+console.log(  arfilter.find(arFind)) // 5  is the first number over 5 in the array
+
+
+
+
+         //  findindex(current, index)   is like find, we find the first value that meets our condition but we want the index of the item. not the item itself
+
+let arrfindin = [11,22,33,44,55,66,77,88,99];
+
+console.log(   arrfindin.findIndex( current => current > 40)) // 3 index, 44 is the first item with index of 3, the 4th item in the array.
+
+
+
+          // forEach(current, index)   we actually DO something to the array items like calculations or string methods to each one, instead of returning a boolean to get the first one or filter.
+arrfindin.forEach(function (current,index) {
+    console.log( current * 2)  // 22, 44, 66  we can do calculations to every item in the array and DONT have to create a new array, where other methods will make a new one
+})
+// a for loop might be better than forEach because we have access to break and continue there, but in forEach, there is no way to stop the loops
+
+
+            // from(current, index)    like forEach, it will run a function for each item, but then it will add each new item into a new array it returns. forEach does not return an array
+                //we have to return the current item calculation, unlike in forEach. there we could just log each item
+                //remember from() is for creating more arrays, where as foreach just wants to run a function for each value, not necessarily returning it
+
+let arrfrom = Array.from(arrfindin, function(current, index) {
+
+return current * 3;
+})
+console.log(arrfrom) //[33, 66, 99]
+
+
+
+                // includes()  same as in string method, returns true or false if the array includes the search term
+let inc = ["cat", "hat", "mat", "splat", "prat", "hat"];
+console.log( inc.includes("mat"));// true
+console.log(inc.includes("c")) ;//false
+
+                // indexOf()  gives index of the search item, returns -1 if it's not found
+console.log( inc.indexOf("splat")) ;// 3
+console.log( inc.indexOf("phat")) ;// -1
+
+
+                // array.join("separator") turns an array into a string,  like how we use split(" ") to make an array out of a string and split each item by space
+console.log(inc.join(" "));// "cat hat mat splat prat"
+
+
+                // lastIndexOf()  like indexOf but gives the last one, so it searches from back to front
+console.log(   inc.indexOf("hat")) // 1
+console.log(  inc.lastIndexOf("hat")) // 5
+
+
+                // length  - gives length of an array or can set the length to trim the array down
+
+console.log(   inc.length) ;// 6         ["cat", "hat", "mat", "splat", "prat", "hat"]
+inc.length = 3;
+console.log(inc) ;//  [ 'cat', 'hat', 'mat' ]
+
+
+            // map(current, index)   map returns a new array that we modify with the function.  where forEach does not return a new one, it's for running a function. array.length number of times. such as
+            //adding events to a group of buttons, you don't need a new array for that. but you need to run a function for each item
+            //so map is for when we NEED a NEW array modified from the first
+
+let upInc = inc.map(current => {
+
+return current.toUpperCase();
+})
+console.log(upInc) // [ 'CAT', 'HAT', 'MAT' ]
+
+
+            // pop()   remove the last item in an array, this changes the original array
+upInc.pop();//
+console.log(upInc) ;//[ 'CAT', 'HAT' ]
+
+
+
+
+            // push()  the opposite of pop, we add an item to the end of the array
+let cars = ["toyota", "honda", "lexus",  "audi", "bmw"]
+cars.push("mazda");
+console.log(cars) //[ 'toyota', 'honda', 'lexus', 'audi', 'bmw', 'mazda' ]
+
+
+
+            // reduce()  - reduce an array to one value, we can store a total and do calculations on every item in the array like add them all together or subtract them all. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+            //the difference is we add item 1 to item2 etc.. instead of doing calculations on each item individually
+            //     array.reduce(function(previousvalue,  currentvalue) .  also called totalvalue placeholder array.reduce(total, currentvalue)
+            // we can replace reduce with forEach, we just create a variable globally to hold the total and add to it, total+= currentvalue,  will give the same
+
+let reduc = [12,1,5,2];
+const reduced = reduc.reduce(function (total, present) {  // note we make the variable const, where if we use forEach, we would use let. this is a benefit to having immutable variable
+    return total + present;
+})
+console.log(reduced) //20
+
+
+            // reverse() reverses the order of the array simply, this DOES change the original array
+let rev  = [1,2,3,4,5];
+console.log(   rev.reverse());
+
+
+                // shift() - push, adds to the end, pop removes from the end, shift removes from the beginning. changes original array
+rev.shift();
+console.log(rev) ;//[ 4, 3, 2, 1 ]
+
+
+                // slice() selects items in an array, and returns the items as a new array
+
+console.log( rev.slice(0,2)) ; // [ 4, 3 ]
+
+
+                    // some()  like every, but not all have to return true to be true here. works like find(), we have a function and condition to check, but we dont return the item or index, just a boolean
+let som = [5, 20,30, 40];
+console.log(som.some((item) => item > 5)) ;// true
+
+
+                    // sort()  sorts an array by comparison. defaults to alphabetical order https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+                    // return > 0  sort a after b
+                    //return < 0 sort a before b
+let sor = [23, 21, 55, 33, 732, 1 ,4]
+sor.sort((a, b) => a - b);
+console.log(sor); //[1,  4,  21, 23, 33, 55, 732 ]
+
+
+
+                    // splice(), will add in elements where you say inside the array, slice() only extracts items already in the array,
+                    // splice() also can remove elements inside the array
+                    // push() adds items to the end, unshift() adds items to the beggins, so this is how we add anywhere in the middle of an array
+                    // splice(index, howmany, item1, ....., itemX)
+sor.splice(3,1, "apple", "orange", "banana");
+console.log(sor) ; // [1,  4, 21, 'apple', 'orange', 'banana',33,  55, 732]   we start at 3 and delete 1 item, "23" then add our 3 items
+
+
+
+                    // toString()  like join() converts array to a string, but string seperates items by comma, where in join() we can specify the seperator
+
+
+
+
+
+
+
+
+
 
 
 
